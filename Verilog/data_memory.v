@@ -7,6 +7,7 @@ input MemRead;	// memory read signal
 input [15:0] ALUresult;// ALU result address
 input [15:0] WriteData;	// Data need to be write 
 input clk;
+input reset;// reset signal for clearing memory
 output reg [15:0] data_result;	// data result
 
 integer i;
@@ -17,11 +18,12 @@ integer i;
 			for(i= 0 ; i< 65025 ; i=i+1)
 					ram[i] <= 16'b0;
 	end
-
-
-always @ (posedge clk)
+always @ (posedge clk or posedge reset)
 begin 
-	if(mw)
+	if(reset==1) begin
+		for(i= 0 ; i< 65025 ; i=i+1)
+			ram[i] <= 16'b0;
+	end else if(MemWrite==1)
 		ram[ram_addr] <= WriteData;
 end
 assign data_result = (MemRead==1'b1)?ram[ram_addr] : 16'b0;
