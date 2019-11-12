@@ -1,3 +1,5 @@
+// 32bits MIPS Processor Data Memory
+
 module data_memory(MemWrite, WriteData, ALUresult, MemRead, clk, data_result);
 
 input MemWrite;// memory write signal
@@ -8,11 +10,11 @@ input clk;
 output reg [15:0] data_result;	// data result
 
 integer i;
-	reg [15:0] ram [255:0]；
-	wire [7:0] ram_addr = mem_access_addr[8:1];
+	reg [15:0] ram [65024:0]；//init a 16*65025 memory
+	wire [15:0] ram_addr = ALUresult[15:0]; //get memory address
 	initial
 	begin
-			for(i= 0 ; i< 256 ; i=i+1)
+			for(i= 0 ; i< 65025 ; i=i+1)
 					ram[i] <= 16'b0;
 	end
 
