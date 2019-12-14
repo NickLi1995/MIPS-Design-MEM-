@@ -11,7 +11,7 @@ input reset;// reset signal for clearing memory
 output wire [31:0] data_result;	// data result
 
 integer i;
-	reg [31:0] ram [255:0]; //init a 16*65025 memory
+	reg [31:0] ram [255:0]; //init a 32*256 memory
 	wire [7:0] ram_addr = ALUresult[7:0]; //get memory address
 	initial
 	begin

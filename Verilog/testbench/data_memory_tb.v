@@ -3,7 +3,7 @@ module data_memory_tb();
 reg MemWrite;
 reg MemRead;
 reg [31:0] ALUresult;
-reg [31:0] WriteData;	
+reg [31:0] WriteData;
 reg clk;
 reg reset;
 wire [31:0] data_result;	
@@ -23,7 +23,7 @@ data_memory test(
 initial begin
 		//save 1 to F[0]
 	clk=1;
-	
+
 	MemRead = 0;
 	MemWrite = 1;
 	ALUresult = 32'h10010000;
@@ -220,6 +220,6 @@ initial begin
 	initial begin
 	$monitor("ALUresult=%d,data_result=%d\n",ALUresult,data_result);
 	#1000 $stop;
-	
+
 	end
 endmodule
