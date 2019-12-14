@@ -11,10 +11,10 @@ control_mux testc(
 		.DMresult(DMresult),
 		.data(data)
 );
-intital
+initial
 	begin
 		#10;//the register will take data from ALUresult
-		memtoReg = 0;
+		memtoReg = 1'b0;
 		ALUresult = 32'h00ff;
 		DMresult = 32'hffff;
 		#10;//save 1 to F[1]
@@ -63,6 +63,9 @@ intital
 		DMresult=32'h00000090;
 		#10;
 	end
-
-
+	always
+	begin
+	$monitor("ALUresult=%d,DMresult=%d,data=%d\n",ALUresult,DMresult,data);
+	#1000 $stop;
+	end
 endmodule
